@@ -1,0 +1,102 @@
+import React, { Fragment, useState } from "react";
+import { Section, Field, Control, Input, Icon, Column, Help } from "rbx";
+import "../../styles/home.scss";
+import Header from "../../components/header";
+import WeatherCard from "../../components/card/weather";
+import { FaSearch } from "react-icons/fa";
+import WeatherService from "../../services/weathers";
+import ListDay from "../../components/card/list-day";
+import Moment from "moment";
+
+const HomeScreen = () => {
+  const [query, setQuery] = useState("");
+  const [card, setCard] = useState([]);
+  const [cardsDay, setCardsDay] = useState([]);
+  const [showCards, setShowCards] = useState(false);
+  const [indexCard, setIndexCard] = useState(1);
+  const [error, setError] = useState("");
+
+  const nextCards = async () => {
+    let index = indexCard + 3;
+    if (index > 22) index = 22;
+    setIndexCard(index);
+    loadCards(index);
+  };
+
+  const previousCards = () => {
+    let index = indexCard - 3;
+    if (index < 1) index = 1;
+    setIndexCard(index);
+    loadCards(index);
+  };
+  const loadCards = async (index) => {
+    const response = await WeatherService.search(query);
+    setCardsDay({
+      index0: response.data.forecast.forecastday[0].hour[index - 1],
+      index1: response.data.forecast.forecastday[0].hour[index],
+      index2: response.data.forecast.forecastday[0].hour[index + 1],
+    });
+
+    setShowCards(true);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      searchWeather(query);
+    }
+  };
+  const searchWeather = async (query) => {
+    try {
+      setIndexCard(1);
+      setError(null);
+      const response = await WeatherService.search(query);
+      setCard(response.data);
+      let hour = parseInt(Moment(Date.now()).format("HH"));
+      if (hour > 22) hour = 2;
+      if (hour < 1) hour = 1;
+      setIndexCard(hour);
+      loadCards(hour);
+    } catch (erro) {
+      setError(erro);
+    }
+  };
+
+  return (
+    <Fragment>
+      <Header />
+
+      <Section size="small" className="home">
+        <Column.Group>
+          <Column size={4}>
+            <Field>
+              <Control iconRight>
+                <Input
+                  color="primary"
+                  type="text"
+                  placeholder="Pesquisar"
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                />
+                <Icon align="right">
+                  <FaSearch />
+                </Icon>
+              </Control>
+              {error && <Help color="danger">Cidade não localizada</Help>}
+            </Field>
+          </Column>
+        </Column.Group>
+        {showCards && <WeatherCard card={card} />} <br />
+        {showCards && (
+          <ListDay
+            card={card}
+            cardsDay={cardsDay}
+            nextCards={nextCards}
+            previousCards={previousCards}
+            indexCard={indexCard}
+          />
+        )}
+      </Section>
+    </Fragment>
+  );
+};
+export default HomeScreen;
