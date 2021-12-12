@@ -22,7 +22,7 @@ const WeatherCard = (props) => {
                 {props.card.condition} <br />
                 <p>
                   <img src={tempIcon} height="15" width="15" alt="" />
-                  {props.card.current.temp_c}º{" "}
+                  {props.card.current.temp_c}º
                 </p>
                 <p className="temps">
                   <img src={tempMaxIcon} height="15" width="15" alt="" />
@@ -37,9 +37,6 @@ const WeatherCard = (props) => {
         <Content>
           {props.card.location.name} / {props.card.location.region}
           <br />
-          <time dateTime="2016-1-1">
-            {Moment(props.card.location.localtime).format("HH:MM")}
-          </time>
         </Content>
       </Card.Content>
     </Card>

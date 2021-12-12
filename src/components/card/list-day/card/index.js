@@ -24,9 +24,7 @@ const CardDay = (props) => {
               <Content>
                 {props.card.location.name} / {props.card.location.region}
                 <br />
-                <time dateTime="2016-1-1">
-                  {Moment(props.cardDay.time).format("HH:00")}
-                </time>
+                <time>{Moment(props.cardDay.time).format("HH:00")}</time>
               </Content>
             </Media.Item>
           </Media>
