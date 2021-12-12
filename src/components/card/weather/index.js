@@ -19,14 +19,14 @@ const WeatherCard = (props) => {
           <Media.Item>
             <Title as="p" size={4}>
               <Title as="p" size={4}>
-                {props.card.current.condition.text} <br />
+                {props.card.condition} <br />
                 <p>
                   <img src={tempIcon} height="15" width="15" alt="" />
                   {props.card.current.temp_c}º{" "}
                 </p>
                 <p className="temps">
                   <img src={tempMaxIcon} height="15" width="15" alt="" />
-                  {props.card.forecast.forecastday[0].day.maxtemp_c}º⠀
+                  {props.card.forecast.forecastday[0].day.maxtemp_c}º
                   <img src={tempMinIcon} height="15" width="15" alt="" />
                   {props.card.forecast.forecastday[0].day.mintemp_c}º
                 </p>
@@ -37,7 +37,9 @@ const WeatherCard = (props) => {
         <Content>
           {props.card.location.name} / {props.card.location.region}
           <br />
-          <time>{Moment(props.card.location.localtime).format("HH:MM")}</time>
+          <time dateTime="2016-1-1">
+            {Moment(props.card.location.localtime).format("HH:MM")}
+          </time>
         </Content>
       </Card.Content>
     </Card>
