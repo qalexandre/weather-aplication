@@ -28,7 +28,7 @@ O projeto está em meu [portfólio](link_portfólio), mas se deseja rodá-lo em 
 ```http://localhost:3000/```
 
 # API utilizada
-<a href='https://www.weatherapi.com/'>
+<a href='https://www.weatherapi.com/'> 
 <img width='236px' src='https://blog.weatherapi.com/wp-content/uploads/2020/02/cropped-Asset-62-1.png'>
 </a>
 <br>
