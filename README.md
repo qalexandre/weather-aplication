@@ -16,7 +16,7 @@
 O projeto está em meu [portfólio](link_portfólio), mas se deseja rodá-lo em sua máquina, siga os seguintes passos.
 
 1. Clone este repositório. <br>
-``` it clone https://github.com/qalexandre/weather-aplication.git``` 
+``` git clone https://github.com/qalexandre/weather-aplication.git``` 
 
 2. Instale as dependências. <br>
 ```npm install```
@@ -26,7 +26,9 @@ O projeto está em meu [portfólio](link_portfólio), mas se deseja rodá-lo em 
 
 4. Abra o navegador em sua localhost (porta definida como 3000).<br>
 ```http://localhost:3000/```
+
  <br>
+
 # API utilizada
 <a href='https://www.weatherapi.com/'> 
 <img width='236px' src='https://blog.weatherapi.com/wp-content/uploads/2020/02/cropped-Asset-62-1.png'>
@@ -35,8 +37,9 @@ O projeto está em meu [portfólio](link_portfólio), mas se deseja rodá-lo em 
 
 
 >Este projeto utiliza a [Wheater API](https://www.weatherapi.com/) para fazer as requisições sobre as previsões e temperaturas.
+ 
+ 
  <br>
-
 
 # Tecnologias
 
