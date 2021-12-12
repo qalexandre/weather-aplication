@@ -27,7 +27,7 @@ O projeto está em meu [portfólio](link_portfólio), mas se deseja rodá-lo em 
 4. Abra o navegador em sua localhost (porta definida como 3000).<br>
 ```http://localhost:3000/```
 
-# API
+# API utilizada
 <a href='https://www.weatherapi.com/'>
 <img width='236px' src='https://blog.weatherapi.com/wp-content/uploads/2020/02/cropped-Asset-62-1.png'>
 </a>
@@ -36,6 +36,7 @@ O projeto está em meu [portfólio](link_portfólio), mas se deseja rodá-lo em 
 
 >Este projeto utiliza a [Wheater API](https://www.weatherapi.com/) para fazer as requisições sobre as previsões e temperaturas.
  <br>
+
 
 # Tecnologias
 
