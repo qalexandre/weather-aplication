@@ -1,11 +1,24 @@
 @import "./custom_colors";
-
-.home {
-  background-color: purple;
-
-  height: 800px;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap");
+main {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
-p.temps{
-  font-size: 15px !important
+
+.main-image {
+    width: 300px;
+    height: 300px;
 }
 
+.main-text {
+    color: #000000;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+    font-size: 40px;
+    width: 500px;
+    text-align: center;
+    text-justify: auto;
+}

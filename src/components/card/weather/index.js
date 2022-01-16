@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Image, Media, Title, Content } from "rbx";
-import Moment from "moment";
 import tempIcon from "../../../assets/icons/temp.png";
 import tempMinIcon from "../../../assets/icons/temp_min.png";
 import tempMaxIcon from "../../../assets/icons/temp_max.png";

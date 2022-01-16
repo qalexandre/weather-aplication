@@ -1,50 +1,32 @@
-import React from "react";
-import { Navigate, Link } from "react-router-dom";
-import { Field, Navbar, Control, Button, Icon } from "rbx";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FaTwitter, FaGithub } from "react-icons/fa";
+import React, { Fragment } from "react";
 import WeatherIcon from "../../assets/icons/weather-icon.png";
+import SearchIcon from "../../assets/icons/search.png";
+import "../../styles/header.scss";
 
-const Header = () => {
+const Header = ({ setProps, value, searchWeather }) => {
   return (
-    <Navbar transparent>
-      <Navbar.Brand>
-        <Link to="/">
-          <Navbar.Item>
-            <img
-              src={WeatherIcon}
-              alt="Bulma: a modern CSS framework based on Flexbox"
-              height="28"
-            />
-          </Navbar.Item>
-        </Link>
-        <Navbar.Burger />
-      </Navbar.Brand>
-      <Navbar.Menu>
-        <Navbar.Segment align="start">
-          <Navbar.Item href="/">Home</Navbar.Item>
-        </Navbar.Segment>
-        <Navbar.Segment align="end">
-          <Navbar.Item as="div">
-            <Field kind="group">
-              <Control>
-                <Button
-                  as="a"
-                  color="black"
-                  href="https://github.com/qalexandre"
-                  target="blank"
-                >
-                  <Icon>
-                    <FaGithub />
-                  </Icon>
-                  <span>GitHub</span>
-                </Button>
-              </Control>
-            </Field>
-          </Navbar.Item>
-        </Navbar.Segment>
-      </Navbar.Menu>
-    </Navbar>
+    <Fragment>
+      <header className="menu">
+        <div className="logo">
+          <img src={WeatherIcon} alt="Imagem - nuvem" className="logo-image" />
+          <a className="logo-text" href="/">
+            WheaterAPP
+          </a>
+        </div>
+        <div className="search">
+          <input
+            value={value}
+            className="search-input"
+            type="text"
+            placeholder="Digite um local"
+            onChange={(e) => setProps(e.target.value)}
+          />
+          <button className="search-button" onClick={searchWeather}>
+            <img src={SearchIcon} alt="" className="search-image" />
+          </button>
+        </div>
+      </header>
+    </Fragment>
   );
 };
 

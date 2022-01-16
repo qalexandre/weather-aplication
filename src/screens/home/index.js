@@ -1,11 +1,10 @@
 import React, { Fragment, useState } from "react";
-import { Section, Field, Control, Input, Icon, Column, Help } from "rbx";
 import "../../styles/home.scss";
 import Header from "../../components/header";
 import WeatherCard from "../../components/card/weather";
-import { FaSearch } from "react-icons/fa";
 import WeatherService from "../../services/weathers";
 import ListDay from "../../components/card/list-day";
+import RainyDay from "../../assets/icons/rainy-day.png";
 import Moment from "moment";
 
 const HomeScreen = () => {
@@ -14,7 +13,6 @@ const HomeScreen = () => {
   const [cardsDay, setCardsDay] = useState([]);
   const [showCards, setShowCards] = useState(false);
   const [indexCard, setIndexCard] = useState(1);
-  const [error, setError] = useState("");
 
   const nextCards = async () => {
     let index = indexCard + 3;
@@ -40,15 +38,9 @@ const HomeScreen = () => {
     setShowCards(true);
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      searchWeather(query);
-    }
-  };
-  const searchWeather = async (query) => {
+  const searchWeather = async () => {
     try {
       setIndexCard(1);
-      setError(null);
       const response = await WeatherService.search(query);
       setCard(response.data);
       let hour = parseInt(Moment(Date.now()).format("HH"));
@@ -56,46 +48,31 @@ const HomeScreen = () => {
       if (hour < 1) hour = 1;
       setIndexCard(hour);
       loadCards(hour);
-    } catch (erro) {
-      setError(erro);
-    }
+    } catch (erro) {}
   };
 
   return (
     <Fragment>
-      <Header />
-
-      <Section size="small" className="home">
-        <Column.Group>
-          <Column size={4}>
-            <Field>
-              <Control iconRight>
-                <Input
-                  color="primary"
-                  type="text"
-                  placeholder="Pesquisar"
-                  onChange={(e) => setQuery(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                />
-                <Icon align="right">
-                  <FaSearch />
-                </Icon>
-              </Control>
-              {error && <Help color="danger">Cidade não localizada</Help>}
-            </Field>
-          </Column>
-        </Column.Group>
-        {showCards && <WeatherCard card={card} />} <br />
-        {showCards && (
-          <ListDay
-            card={card}
-            cardsDay={cardsDay}
-            nextCards={nextCards}
-            previousCards={previousCards}
-            indexCard={indexCard}
-          />
-        )}
-      </Section>
+      <Header setProps={setQuery} value={query} searchWeather={searchWeather} />
+      {!showCards && (
+        <main onClick={console.log(query)}>
+          <img src={RainyDay} alt="" className="main-image" />
+          <p className="main-text">
+            “Previsão, clima, alertas e qualidade do ar de qualquer lugar do
+            país rápido e prático.”
+          </p>
+        </main>
+      )}
+      {showCards && <WeatherCard card={card} />} <br />
+      {showCards && (
+        <ListDay
+          card={card}
+          cardsDay={cardsDay}
+          nextCards={nextCards}
+          previousCards={previousCards}
+          indexCard={indexCard}
+        />
+      )}
     </Fragment>
   );
 };
