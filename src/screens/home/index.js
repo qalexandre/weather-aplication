@@ -8,6 +8,7 @@ import RainyDay from "../../assets/icons/rainy-day.png";
 import Moment from "moment";
 
 const HomeScreen = () => {
+  document.title = "WheaterAPP";
   const [query, setQuery] = useState("");
   const [card, setCard] = useState([]);
   const [cardsDay, setCardsDay] = useState([]);
@@ -55,7 +56,7 @@ const HomeScreen = () => {
     <Fragment>
       <Header setProps={setQuery} value={query} searchWeather={searchWeather} />
       {!showCards && (
-        <main onClick={console.log(query)}>
+        <main>
           <img src={RainyDay} alt="" className="main-image" />
           <p className="main-text">
             “Previsão, clima, alertas e qualidade do ar de qualquer lugar do
